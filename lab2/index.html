@@ -14,6 +14,8 @@
         <img src="img/forest.jpg" height="100" alt="A photo of a forest during autumn." />
     </div>
 
+    <br />
+
     <div>
         <table bgcolor="#ffaaff" border="1" cellspacing="0" cellpadding="0">
             <caption>
@@ -55,18 +57,18 @@
                                     <th>Nested table header 3</th>
                                 </tr>
                             </thead>
-                
+
                             <tbody>
                                 <tr>
                                     <td>cell 1</td>
                                     <td rowspan="2">this cell spans two rows</td>
                                     <td rowspan="3">this cell spans three rows</td>
                                 </tr>
-                
+
                                 <tr>
                                     <td>remaining cell</td>
                                 </tr>
-                
+
                                 <tr>
                                     <td>remaining cell</td>
                                     <td>remaining third row</td>
@@ -85,6 +87,71 @@
                 </tr>
             </tfoot>
         </table>
+    </div>
+
+    <br />
+
+    <div>
+        <form>
+            <div>
+                <label for="text_input">Text input:</label>
+                <br />
+                <input type="text" id="text_input" name="text_input">
+            </div>
+
+            <div>
+                <label for="text_input2">Text input 2:</label>
+                <br />
+                <input type="text" id="text_input2" name="text_input2">
+            </div>
+
+            <div>
+                <label for="dropdown_input">Dropdown input</label><br />
+                <select id="dropdown_input" name="dropdown_input">
+                    <option value="">Select option</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+
+                </select>
+            </div>
+
+            <div>
+                <fieldset>
+                    <legend>Radio inputs</legend>
+                    <input type="radio" name="action" id="radio_a" value="radio_a" /><label
+                        for="radio_a">A</label><br />
+                    <input type="radio" name="action" id="radio_b" value="radio_b" /><label
+                        for="radio_b">B</label><br />
+                    <input type="radio" name="action" id="radio_c" value="radio_c" /><label
+                        for="radio_c">C</label><br />
+                </fieldset>
+            </div>
+
+            <div>
+                <fieldset>
+                    <legend>Checkbox inputs</legend>
+                    <label>
+                        <input type="checkbox" name="checkbox_input" value="A" id="checkbox_input_a"> A
+                    </label>
+                    <label>
+                        <input type="checkbox" name="checkbox_input" value="B" id="checkbox_input_b"> B
+                    </label>
+                    <label>
+                        <input type="checkbox" name="checkbox_input" value="C" id="checkbox_input_c"> C
+                    </label>
+                </fieldset>
+            </div>
+
+            <div>
+                <label for="textarea_input">Textarea input:</label>
+                <br />
+                <textarea maxlength="200" id="textarea_input" name="textarea_input"></textarea>
+            </div>
+
+            <input type="reset" value="Reset">
+            <input type="submit" value="Submit">
+        </form>
     </div>
 </body>
 
