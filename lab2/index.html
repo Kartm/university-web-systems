@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Laboratory 2</title>
+</head>
+
+<body>
+    <div>
+        <img src="img/mountain.jpg" alt="A photo of a mountain peak." />
+
+        <img src="img/forest.jpg" width="100" alt="A photo of a forest during autumn." />
+        <img src="img/forest.jpg" height="100" alt="A photo of a forest during autumn." />
+    </div>
+
+    <div>
+        <table border="1" cellspacing="0" cellpadding="0">
+            <caption>
+                Some table caption
+            </caption>
+            <thead>
+                <tr>
+                    <th>Some header content 1</th>
+                    <th>Some header content 2</th>
+                    <th>Some header content 3</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>cell 1</td>
+                    <td>cell 2</td>
+                    <td>cell 3</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">this is a very wide cell spanning 2 columns</td>
+                    <td>remaining third column</td>
+                </tr>
+
+                <tr>
+                    <td colspan="3">
+                        this is an even wider cell spanning 3 columns (the entire row)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="3">
+                        <table border="1" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th>Nested table header 1</th>
+                                    <th>Nested table header 2</th>
+                                    <th>Nested table header 3</th>
+                                </tr>
+                            </thead>
+                
+                            <tbody>
+                                <tr>
+                                    <td>cell 1</td>
+                                    <td rowspan="2">this cell spans two rows</td>
+                                    <td rowspan="3">this cell spans three rows</td>
+                                </tr>
+                
+                                <tr>
+                                    <td>remaining cell</td>
+                                </tr>
+                
+                                <tr>
+                                    <td>remaining cell</td>
+                                    <td>remaining third row</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td>normal footer content</td>
+                    <td><b>bold footer content</b></td>
+                    <td><i>italic footer content</i></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+
+</html>
