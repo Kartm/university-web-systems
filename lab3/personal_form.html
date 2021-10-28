@@ -24,73 +24,73 @@
       <article>
         <form>
           <h2>Personal user form</h2>
-		  <section>
-			  <label for="name_input">Please enter your name:</label>
-				<br />
-				<input
-				  type="text"
-				  id="name_input"
-				  name="name_input"
-				  autofocus
-				  autocomplete="on"
-				/>
-		  </section>
-		  <section>
-			  <label for="surname_input">Please enter your surnname:</label>
-				<br />
-				<input
-				  type="text"
-				  id="surname_input"
-				  name="surname_input"
-				  required
-				  autocomplete="on"
-				/>
-		  </section>
-		  <datalist id="browsers">
-			  <option value="January">
-			  <option value="February">
-			  <option value="March">
-			  <option value="April">
-			  <option value="May">
-			  <option value="June">
-			  <option value="July">
-			  <option value="August">
-			  <option value="September">
-			  <option value="October">
-			  <option value="November">
-			  <option value="December">
-		  </datalist>
-		  <section>
-			<label for="month">Choose your month of birth:</label>
-			<br />
-			<input 
-				list="months" 
-				name="month" 
-				id="month">
-		  </section>
-		  <section>
-				<label for="email">Enter your email:</label>
-				<br />
-				<input 
-					type="email" 
-					id="email" 
-					name="email" 
-					required
-					autocomplete="on">
-			</section>
-			<section>
-				<label for="phone">Enter your phone number:</label>
-				<br />
-				<input 
-				type="phone" 
-				id="phone" 
-				name="phone" 
-				pattern="[0-9]{9}"
-				autocomplete="on">
-			</section>
-			<section>
-				<input type="submit">
-			</section>
+          <section>
+            <label for="name_input">Please enter your name:</label>
+            <br />
+            <input
+              type="text"
+              id="name_input"
+              name="name_input"
+              autofocus
+              autocomplete="on"
+            />
+          </section>
+          <section>
+            <label for="surname_input">Please enter your surnname:</label>
+            <br />
+            <input
+              type="text"
+              id="surname_input"
+              name="surname_input"
+              required
+              autocomplete="on"
+            />
+          </section>
+          <datalist id="months">
+            <option value="January"></option>
+            <option value="February"></option>
+            <option value="March"></option>
+            <option value="April"></option>
+            <option value="May"></option>
+            <option value="June"></option>
+            <option value="July"></option>
+            <option value="August"></option>
+            <option value="September"></option>
+            <option value="October"></option>
+            <option value="November"></option>
+            <option value="December"></option>
+          </datalist>
+
+          <section>
+            <label for="month">Choose your month of birth:</label>
+            <br />
+            <input list="months" name="month" id="month" />
+          </section>
+          <section>
+            <label for="email">Enter your email:</label>
+            <br />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              autocomplete="on"
+            />
+          </section>
+          <section>
+            <label for="phone">Enter your phone number:</label>
+            <br />
+            <input
+              type="phone"
+              id="phone"
+              name="phone"
+              pattern="[0-9]{9}"
+              autocomplete="on"
+            />
+          </section>
+          <section>
+            <input type="submit" />
+          </section>
         </form>
       </article>
     </main>
