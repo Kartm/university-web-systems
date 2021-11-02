@@ -69,3 +69,44 @@ footer {
   font-weight: bold;
   font-variant: small-caps;
 }
+
+table {
+  width: 100%;
+  max-width: 50%;
+  border-collapse: collapse;
+  border: 1px solid black;
+  table-layout: fixed;
+}
+
+thead {
+  background-color: cadetblue;
+}
+
+tfoot {
+  background-color: gainsboro;
+}
+
+thead th:nth-child(1) {
+  width: 25%;
+}
+
+thead th:nth-child(2) {
+  width: 25%;
+}
+
+thead th:nth-child(3) {
+  width: 50%;
+}
+
+td {
+  background-color: bisque;
+}
+
+table table td {
+  background-color: darkkhaki;
+}
+
+th,
+td {
+  padding: 8px;
+}
