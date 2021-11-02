@@ -1,5 +1,5 @@
 .font-size-examples .em {
-  font-size: 2em;
+  font-size: 0.5em;
 }
 
 .font-size-examples .px {
@@ -11,5 +11,47 @@
 }
 
 .font-size-examples .percent {
-  font-size: 200%;
+  font-size: 80%;
+}
+
+#custom-list-element {
+  font-weight: bold;
+  font-style: italic;
+  color: green;
+}
+
+/* all children with ul tag */
+.nested-list-examples ul {
+  color: mediumseagreen;
+}
+
+.nested-list-examples ul.level-1 {
+  font-size: 30px;
+}
+
+.nested-list-examples ul.level-2 {
+  font-size: 24px;
+}
+
+.nested-list-examples ul.level-3 {
+  font-size: 20px;
+}
+
+.nested-list-examples ul.level-1 ul.level-2 ul.level-3 {
+  font-size: 14px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border: 0.5px solid grey;
+}
+
+footer span {
+  background-color: greenyellow;
+}
+
+footer > span {
+  background-color: yellow;
 }

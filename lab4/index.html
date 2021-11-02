@@ -12,56 +12,62 @@
     <header>
       <h1>Index page</h1>
 
-      <h3>Navigation:</h3>
-      <nav>
-        <ul>
-          <li><a href="index.html">Index page</a></li>
-          <li><a href="chopin.html">Chopin page</a></li>
-          <li><a href="gallery.html">Gallery page</a></li>
-          <li><a href="personal_form.html">Personal form</a></li>
-          <li><a href="additional_form.html">Additional form</a></li>
-        </ul>
-      </nav>
+      <section>
+        <h3>Navigation:</h3>
+        <nav>
+          <ul>
+            <li><a href="index.html">Index page</a></li>
+            <li><a href="chopin.html">Chopin page</a></li>
+            <li><a href="gallery.html">Gallery page</a></li>
+            <li><a href="personal_form.html">Personal form</a></li>
+            <li><a href="additional_form.html">Additional form</a></li>
+          </ul>
+        </nav>
+      </section>
     </header>
 
     <main>
       <article>
-        <h2>Lorem ipsum</h2>
+        <h2>Font size examples</h2>
         <section class="font-size-examples">
-          <p class="em">2em</p>
-          <p class="px">16px</p>
-          <p class="pt">16pt</p>
-          <p class="percent">200%</p>
+          <p class="em">Font size 0.5em</p>
+          <p class="px">Font size 16px</p>
+          <p class="pt">Font size 16pt</p>
+          <p class="percent">Font size 80%</p>
         </section>
-        <section>
-          <h3>Pellentesque hendrerit, tortor at maximus pulvinar.</h3>
-          <p>Diam ligula dictum metus, sed imperdiet.</p>
+
+        <h2>Class & id usage examples</h2>
+        <section class="nested-list-examples">
+          <ul class="level-1">
+            <li>
+              Large 1
+              <ul class="level-2">
+                <li>
+                  Smaller 1.1
+                  <ul class="level-3">
+                    <li>Smallest 1.1.1</li>
+                    <li id="custom-list-element">Smallest 1.1.2</li>
+                    <li>Smallest 1.1.3</li>
+                  </ul>
+                </li>
+                <li>Smaller 1.2</li>
+                <li>Smaller 1.3</li>
+              </ul>
+            </li>
+            <li>Large 2</li>
+            <li>Large 3</li>
+          </ul>
         </section>
-        <section>
-          <h3>Maecenas ac sem</h3>
-          <article>
-            <h4>Curabitur molestie ipsum sed velit sollicitudin.</h4>
-            <p>Integer quis ipsum eget tellus cursus semper.</p>
-            <footer>
-              <p>Sit amet condimentum.</p>
-            </footer>
-          </article>
-          <article>
-            <h4>Cras cursus tellus orci!</h4>
-            <p>Ut pharetra augue tempus at.</p>
-            <footer>
-              <p>Arcu vehicula.</p>
-            </footer>
-          </article>
-        </section>
+
         <footer>
           <p>
-            Curabitur accumsan elementum neque, nec accumsan ligula varius in.
+            Curabitur accumsan elementum neque, <span>nec accumsan</span> ligula
+            varius in.
           </p>
         </footer>
       </article>
     </main>
 
-    <footer>2021</footer>
+    <footer>2021 <span>labs</span></footer>
   </body>
 </html>
