@@ -55,3 +55,17 @@ footer span {
 footer > span {
   background-color: yellow;
 }
+
+p {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+details {
+  line-height: 1;
+}
+
+footer {
+  font-style: italic;
+  font-weight: bold;
+  font-variant: small-caps;
+}
