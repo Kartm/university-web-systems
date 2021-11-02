@@ -1,0 +1,15 @@
+.font-size-examples .em {
+  font-size: 2em;
+}
+
+.font-size-examples .px {
+  font-size: 16px;
+}
+
+.font-size-examples .pt {
+  font-size: 16pt;
+}
+
+.font-size-examples .percent {
+  font-size: 200%;
+}
