@@ -74,6 +74,8 @@ table {
   width: 100%;
   max-width: 50%;
   border-collapse: collapse;
+  border-radius: 50px;
+  overflow: hidden;
   border: 1px solid black;
   table-layout: fixed;
 }
@@ -132,65 +134,60 @@ td {
 }
 
 .test-style {
-	font-size: 25;
-	color: red;
+  font-size: 25;
+  color: red;
 }
 
 .bkg-style-one {
-	background-image: url(img/kret.png);
-	background-position: top;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+  background-image: url(img/kret.png);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .bkg-style-two {
-	background-color: pink;
-	background-position: bottom;
-	clear: left;
+  background-color: pink;
+  background-position: bottom;
+  clear: left;
 }
 
 .bkg-style-three {
-	background-image: url(img/kretolon.png);
-	background-position: right;
-	background-repeat: no-repeat;
-	background-size: 50% 100%;
+  background-image: url(img/kretolon.png);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: 50% 100%;
 }
 
 .box-margin {
-	padding-top: thick;
-	margin-left: thick;
-	position: relative;
-	bottom: 40px;
-	left: 40px;
-	border: 1px;
-	border-width: medium;
-	border-color: aquamarine;
-	border-style: dashed;
+  padding-top: thick;
+  margin-left: thick;
+  position: relative;
+  bottom: 40px;
+  left: 40px;
+  border: 1px;
+  border-width: medium;
+  border-color: aquamarine;
+  border-style: dashed;
 }
 
 .pos-abs {
-	position:absolute;
-	top: 100px;
-	left: 30px;
+  position: absolute;
+  top: 100px;
+  left: 30px;
 }
 
 .pos-static {
-	position:static;
-	bottom: 60px;
-	left: 150px;
-	float: right;
+  position: static;
+  bottom: 60px;
+  left: 150px;
+  float: right;
 }
 
 .pos-fixed {
-	position:fixed;
-	top: 60px;
-	left: 150px;
+  position: fixed;
+  top: 60px;
+  left: 150px;
 }
-
-
-
-//:active, :focus, 
-//:last-of-type, :not(),, :onlychild, :required, :target
 
 p:last-of-type {
   color: brown;
@@ -217,41 +214,48 @@ input:required {
 }
 
 a:link {
-	color: lime;
+  color: lime;
 }
-p:empty { background: green;}
+p:empty {
+  background: green;
+}
 
 p:hover {
-	background-color: orange;
+  background-color: orange;
 }
 
 section:last-child {
-	background-color: purple;
+  background-color: purple;
 }
 input[type="checkbox"]:checked {
-box-shadow: 0 0 0 3px hotpink;}
+  box-shadow: 0 0 0 3px hotpink;
+}
 
-input:enabled{color:green;}
+input:enabled {
+  color: green;
+}
 
-input:disabled { background: green;}
+input:disabled {
+  background: green;
+}
 
 section:first-child {
-	background-color: yellow;
+  background-color: yellow;
 }
 section:nth-child(2) {
-	background-color: hotpink;
+  background-color: hotpink;
 }
 
 section:nth-last-child(2) {
-	background-color: cyan;
+  background-color: cyan;
 }
 
 @page first {
-	background-color: green;
+  background-color: green;
 }
 
 a:visited {
-	color: cyan;
+  color: cyan;
 }
 
 @media print {
@@ -272,7 +276,7 @@ button.menu-btn {
 }
 
 p[title="birth"] {
-	background-color: teal;
+  background-color: teal;
 }
 
 .dropdown-menu {
@@ -299,7 +303,7 @@ p[title="birth"] {
 }
 
 .submenu-content a:hover {
-  background-color: #f1f1f1;
+  background-color: red;
 }
 
 .dropdown-menu:hover button.menu-btn {
