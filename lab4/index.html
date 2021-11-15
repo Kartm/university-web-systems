@@ -21,7 +21,7 @@
             <li><a href="gallery.html">Gallery page</a></li>
             <li><a href="personal_form.html">Personal form</a></li>
             <li><a href="additional_form.html">Additional form</a></li>
-			<li><a href="css_test.html">CSS Style Test</a></li>
+            <li><a href="css_test.html">CSS Style Test</a></li>
           </ul>
         </nav>
       </section>
@@ -89,6 +89,53 @@
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section>
+          <!-- todo vendor prefixes? -->
+          <h2 style="text-shadow: 2px 2px red">Laboratory 5</h2>
+
+          <p style="background-color: rgba(255, 131, 53, 0.3)">
+            This is colored by RGBA
+          </p>
+          <p style="background-color: hsla(50, 33%, 25%, 0.75)">
+            This is colored by HSLA
+          </p>
+
+          <!-- todo vendor prefixes? -->
+          <div
+            style="
+              height: 50px;
+              background: linear-gradient(45deg, black, transparent);
+            "
+          >
+            Linear gradient
+          </div>
+          <div
+            style="
+              height: 50px;
+              background: radial-gradient(black, transparent);
+            "
+          >
+            Radial gradient
+          </div>
+
+          <div
+            style="
+              width: 200px;
+              height: 200px;
+              border: 50px solid transparent;
+              border-image-source: repeating-linear-gradient(
+                45deg,
+                transparent,
+                #4d9f0c 20px
+              );
+              border-image-slice: 10% 30%;
+              border-image-repeat: repeat;
+            "
+          >
+            Hello
           </div>
         </section>
 
