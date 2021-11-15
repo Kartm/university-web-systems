@@ -323,3 +323,32 @@ p[title="birth"] {
 .interactive-transition:hover {
   transform: translateX(-100%) scale(0.5) rotateZ(-90deg) skew(-45deg, 0);
 }
+
+.flexible-box-layout-wrapper {
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
+  flex-direction: row;
+  max-width: 500px;
+  height: 400px;
+}
+
+.flexible-box-layout-item {
+  -webkit-box-flex: 1; /* OLD - iOS 6-, Safari 3.1-6 */
+  -webkit-flex: 1; /* Safari 6.1+. iOS 7.1+, BB10 */
+  -ms-flex: 1; /* IE 10 */
+  flex: 1; /* NEW, Spec - Firefox, Chrome, Opera */
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  transition: 0.3s ease-in-out;
+}
+
+.flexible-box-layout-item:hover {
+  -webkit-box-flex: 2; /* OLD - iOS 6-, Safari 3.1-6 */
+  -webkit-flex: 2; /* Safari 6.1+. iOS 7.1+, BB10 */
+  -ms-flex: 2; /* IE 10 */
+  flex: 2; /* NEW, Spec - Firefox, Chrome, Opera */
+  font-weight: bold;
+}
