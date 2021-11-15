@@ -352,3 +352,19 @@ p[title="birth"] {
   flex: 2; /* NEW, Spec - Firefox, Chrome, Opera */
   font-weight: bold;
 }
+
+.screen-dependent-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media only screen and (min-width: 601px) {
+  .screen-dependent-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.screen-dependent-grid div {
+  border: 1px solid grey;
+  height: 100px;
+}
