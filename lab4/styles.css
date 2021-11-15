@@ -313,3 +313,13 @@ p[title="birth"] {
 .dropdown-menu:hover > .submenu-content {
   display: block;
 }
+
+.interactive-transition {
+  mix-blend-mode: multiply;
+  transform: translateX(-80%);
+  transition: 0.3s;
+}
+
+.interactive-transition:hover {
+  transform: translateX(-100%) scale(0.5) rotateZ(-90deg) skew(-45deg, 0);
+}
