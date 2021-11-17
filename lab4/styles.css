@@ -266,6 +266,25 @@ a:visited {
   }
 }
 
+@keyframes coloring {
+  0%   {background-color: red;}
+  10%  {background-color: orange;}
+  20%  {background-color: yellow;}
+  30%  {background-color: lime;}
+  40%  {background-color: green;}
+  50%  {background-color: aquamarine;}
+  60%  {background-color: blue;}
+  70%  {background-color: purple;}
+  80%  {background-color: crimson;}
+  90%  {background-color: pink;}
+  100% {background-color: cyan;}
+}
+
+@font-face {
+  font-family: external_font;
+  src: url(estonia.woff);
+}
+
 button.menu-btn {
   background-color: #753e8e;
   color: white;
