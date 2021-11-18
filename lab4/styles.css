@@ -281,8 +281,7 @@ a:visited {
 }
 
 @font-face {
-  font-family: external_font;
-  src: url(estonia.woff);
+  font-family: 'Estonia', cursive;
 }
 
 button.menu-btn {
