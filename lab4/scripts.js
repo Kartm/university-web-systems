@@ -12,45 +12,48 @@
 // control statements: if…else, case, while, do…while, for
 // global variables
 
+// do formatowania uzylem https://beautifier.io/
+// i on chcial zeby uzyc https://www.jslint.com/ pozniej do sprawdzenia skladni
+
 function destroyPage() {
-  if (window.prompt('Are you sure? Write "Yes" to confirm.') === "Yes") {
-    document.write(`
+    if (window.prompt("Are you sure? Write \"Yes\" to confirm.") === "Yes") {
+        document.write(`
         <h1>Page has been destroyed!</h1>
         <button id="refresh">Refresh</button>
     `);
 
-    const button = document.getElementById("refresh");
-    button.addEventListener("click", () => {
-      window.location.reload();
+        const button = document.getElementById("refresh");
+        button.addEventListener("click", function () {
+            window.location.reload();
 
-      return false;
-    });
-  }
+            return false;
+        });
+    }
 }
 
 function addDestroyListener() {
-  const button = document.getElementById("destroy");
-  button.addEventListener("click", destroyPage);
+    const button = document.getElementById("destroy");
+    button.addEventListener("click", destroyPage);
 }
 
 let counter = 1;
 
 function addEnterListener() {
-  window.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-      const indexPageHeader = document.getElementById("index-page-header");
-      indexPageHeader.innerHTML = `Index page, enter got clicked ${counter} times`;
-      counter++;
-    }
-  });
+    window.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+            const header = document.getElementById("index-page-header");
+            header.innerHTML = `Index page, enter clicked ${counter} times`;
+            counter = counter + 1;
+        }
+    });
 }
 
 function addListeners() {
-  addDestroyListener();
-  addEnterListener();
+    addDestroyListener();
+    addEnterListener();
 }
 
-window.addEventListener("DOMContentLoaded", (event) => {
-  window.alert("DOM loaded and parsed!");
-  addListeners();
+window.addEventListener("DOMContentLoaded", function () {
+    window.alert("DOM loaded and parsed!");
+    addListeners();
 });
