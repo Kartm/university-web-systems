@@ -5,15 +5,16 @@
 // window.addEventListener() - gotowe
 // button.addEventListener() - gotowe
 // property innerHTML - gotowe
-// parseInt()
-// parseFloat()
-// Math.random()
-// Math.floor()
+// parseInt()- gotowe
+// parseFloat()- gotowe
+// Math.random()- gotowe
+// Math.floor()- gotowe
 // control statements: if…else, case, while, do…while, for
 // global variables
 
 // do formatowania uzylem https://beautifier.io/
 // i on chcial zeby uzyc https://www.jslint.com/ pozniej do sprawdzenia skladni
+var min = 20;
 
 function destroyPage() {
     if (window.prompt("Are you sure? Write \"Yes\" to confirm.") === "Yes") {
@@ -23,7 +24,7 @@ function destroyPage() {
     `);
 
         const button = document.getElementById("refresh");
-        button.addEventListener("click", function () {
+        button.addEventListener("click", function() {
             window.location.reload();
 
             return false;
@@ -36,10 +37,15 @@ function addDestroyListener() {
     button.addEventListener("click", destroyPage);
 }
 
+function addGuesserListener() {
+    const button = document.getElementById("guesser");
+    button.addEventListener("click", guesser);
+}
+
 let counter = 1;
 
 function addEnterListener() {
-    window.addEventListener("keypress", function (e) {
+    window.addEventListener("keypress", function(e) {
         if (e.key === "Enter") {
             const header = document.getElementById("index-page-header");
             header.innerHTML = `Index page, enter clicked ${counter} times`;
@@ -51,9 +57,28 @@ function addEnterListener() {
 function addListeners() {
     addDestroyListener();
     addEnterListener();
+    addGuesserListener();
 }
 
-window.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("DOMContentLoaded", function() {
     window.alert("DOM loaded and parsed!");
     addListeners();
 });
+
+function guesser() {
+    const header_random = document.getElementById("result_random");
+    let string_float = window.prompt("Write a float");
+    let floatn = parseFloat(string_float);
+    if (floatn == 0) {
+        header_random.innerHTML = `Sorry, the float cannot be 0`;
+    } else {
+        let number = 0;
+        do {
+            let string_number = window.prompt("Write an integer, must be bigger than 20");
+            number = parseInt(string_number);
+        } while (number < min);
+        let random = Math.random() * number * 5;
+        let result = Math.floor(Math.abs(floatn - random));
+        header_random.innerHTML = `From ${floatn} and ${number} we generated ${result}`;
+    }
+}
