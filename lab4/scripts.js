@@ -67,18 +67,20 @@ window.addEventListener("DOMContentLoaded", function() {
 
 function guesser() {
     const header_random = document.getElementById("result_random");
-    let string_float = window.prompt("Write a float");
-    let floatn = parseFloat(string_float);
-    if (floatn == 0) {
+	var number = 0;
+    var string_float = window.prompt("Write a float");
+    var floatn = parseFloat(string_float);
+    if (floatn === 0) {
         header_random.innerHTML = `Sorry, the float cannot be 0`;
     } else {
-        let number = 0;
         do {
-            let string_number = window.prompt("Write an integer, must be bigger than 20");
+            var string_number = 
+				window.prompt("Write an integer, must be bigger than 20");
             number = parseInt(string_number);
         } while (number < min);
-        let random = Math.random() * number * 5;
-        let result = Math.floor(Math.abs(floatn - random));
-        header_random.innerHTML = `From ${floatn} and ${number} we generated ${result}`;
+        var random = Math.random() * number * 5;
+        var result = Math.floor(Math.abs(floatn - random));
+        header_random.innerHTML = 
+			`From ${floatn} and ${number} we generated ${result}`;
     }
 }
