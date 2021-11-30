@@ -1,84 +1,78 @@
-// document.writeln() - gotowe
-// document.getElementById() - gotowe
-// window.prompt() - gotowe
-// window.alert() - gotowe
-// window.addEventListener() - gotowe
-// button.addEventListener() - gotowe
-// property innerHTML - gotowe
-// parseInt()- gotowe
-// parseFloat()- gotowe
-// Math.random()- gotowe
-// Math.floor()- gotowe
-// control statements: if…else, case, while, do…while, for
-// global variables
-
-var min = 20;
-
-function destroyPage() {
-  if (window.prompt('Are you sure? Write "Yes" to confirm.') === "Yes") {
-    document.write(`
-        <h1>Page has been destroyed!</h1>
-        <button id="refresh">Refresh</button>
-    `);
-
-    const button = document.getElementById("refresh");
-    button.addEventListener("click", function () {
-      window.location.reload();
-
-      return false;
-    });
-  }
-}
-
-function addDestroyListener() {
-  const button = document.getElementById("destroy");
-  button.addEventListener("click", destroyPage);
-}
-
-function addGuesserListener() {
-  const button = document.getElementById("guesser");
-  button.addEventListener("click", guesser);
-}
-
-let counter = 1;
-
-function addEnterListener() {
-  window.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-      const header = document.getElementById("index-page-header");
-      header.innerHTML = `Index page, enter clicked ${counter} times`;
-      counter = counter + 1;
-    }
-  });
-}
-
-function addListeners() {
-  addDestroyListener();
-  addEnterListener();
-  addGuesserListener();
-}
+const squares = [
+  { cssBackgroundColor: "magenta", key: "m" },
+  { cssBackgroundColor: "yellow", key: "y" },
+  { cssBackgroundColor: "green", key: "g" },
+  { cssBackgroundColor: "orange", key: "o" },
+  { cssBackgroundColor: "pink", key: "p" },
+];
 
 window.addEventListener("DOMContentLoaded", function () {
-  window.alert("DOM loaded and parsed!");
-  addListeners();
-});
+  const gameBox = document.getElementById("game-box");
 
-function guesser() {
-  const header_random = document.getElementById("result_random");
-  var number = 0;
-  var string_float = window.prompt("Write a float");
-  var floatn = parseFloat(string_float);
-  if (floatn === 0) {
-    header_random.innerHTML = `Sorry, the float cannot be 0`;
-  } else {
-    do {
-      var string_number = window.prompt(
-        "Write an integer, must be bigger than 20"
-      );
-      number = parseInt(string_number);
-    } while (number < min);
-    var random = Math.random() * number * 5;
-    var result = Math.floor(Math.abs(floatn - random));
-    header_random.innerHTML = `From ${floatn} and ${number} we generated ${result}`;
+  const getSingleSquareSize = () => {
+    const smaller = Math.min(
+      gameBox.getBoundingClientRect().width,
+      gameBox.getBoundingClientRect().height
+    );
+
+    return smaller / 5;
+  };
+
+  const squareSize = getSingleSquareSize();
+
+  const nonOverlappingPositions = [];
+
+  while (nonOverlappingPositions.length < 5) {
+    const { width, height } = gameBox.getBoundingClientRect();
+    var x = Math.floor(Math.random() * (width - squareSize));
+    var y = Math.floor(Math.random() * (height - squareSize));
+
+    if (
+      nonOverlappingPositions.some((p) => {
+        const l1 = {
+          x: p.x,
+          y: p.y,
+        };
+        const r1 = {
+          x: p.x + squareSize,
+          y: p.y + squareSize,
+        };
+
+        const l2 = {
+          x: x,
+          y: x,
+        };
+        const r2 = {
+          x: x + squareSize,
+          y: y + squareSize,
+        };
+        // If one rectangle is on left side of other
+        if (l1.x >= r2.x || l2.x >= r1.x) return false;
+
+        // If one rectangle is above other
+        if (r1.y >= l2.y || r2.y >= l1.y) return false;
+
+        return true;
+        // check overlap
+      })
+    ) {
+      continue;
+    }
+
+    nonOverlappingPositions.push({ x, y });
   }
-}
+
+  squares.forEach((s, i) => {
+    const { x, y } = nonOverlappingPositions[i];
+
+    const box = document.createElement("div");
+    box.style.backgroundColor = s.cssBackgroundColor;
+    box.style.width = `${squareSize}px`;
+    box.style.height = `${squareSize}px`;
+    box.style.position = "absolute";
+    box.style.bottom = `${y}px`;
+    box.style.left = `${x}px`;
+
+    gameBox.appendChild(box);
+  });
+});
