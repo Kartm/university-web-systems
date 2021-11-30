@@ -10,6 +10,7 @@ let gameBoxElement;
 let scoreElement;
 
 const gameState = {
+  active: false,
   points: 0,
 };
 
@@ -18,12 +19,11 @@ const addAndDisplayPoints = (newPoints) => {
   scoreElement.innerHTML = `Points: ${gameState.points}`;
 };
 
-window.addEventListener("DOMContentLoaded", function () {
-  gameBoxElement = document.getElementById("game-box");
-  scoreElement = document.getElementById("score");
+const handleSquareClicked = (data) => {
+  console.log(data);
+};
 
-  addAndDisplayPoints(0);
-
+const initializeGame = () => {
   const getSquareSize = () => {
     const smaller = Math.min(
       gameBoxElement.getBoundingClientRect().width,
@@ -73,6 +73,22 @@ window.addEventListener("DOMContentLoaded", function () {
     box.style.left = `${x}px`;
     box.style.cursor = "pointer";
 
+    box.addEventListener("click", () => handleSquareClicked({ s }));
+
     gameBoxElement.appendChild(box);
+  });
+};
+
+window.addEventListener("DOMContentLoaded", function () {
+  gameBoxElement = document.getElementById("game-box");
+  scoreElement = document.getElementById("score");
+  addAndDisplayPoints(0);
+
+  gameBoxElement.addEventListener("mouseover", () => {
+    if (!gameState.active && confirm("Wanna play?")) {
+      gameState.active = true;
+
+      initializeGame();
+    }
   });
 });
