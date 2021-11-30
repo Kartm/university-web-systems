@@ -19,7 +19,7 @@ const addAndDisplayPoints = (newPoints) => {
   scoreElement.innerHTML = `Points: ${gameState.points}`;
 };
 
-const handleSquareClicked = (data, target) => {
+const onSquareClicked = (data, target) => {
   console.log(data, target);
 
   target.style.display = "none";
@@ -80,7 +80,7 @@ const initializeGame = () => {
     box.style.left = `${x}px`;
     box.style.cursor = "pointer";
 
-    box.addEventListener("click", (e) => handleSquareClicked({ s }, e.target));
+    box.addEventListener("click", (e) => onSquareClicked({ s }, e.target));
 
     gameBoxElement.appendChild(box);
   });
