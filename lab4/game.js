@@ -32,31 +32,39 @@ class Game {
     return smaller / 5;
   }
 
+  _doSquaresOverlap(a, b) {
+    // if they miss horizontally
+    if (a.x + this.squareSize <= b.x || b.x + this.squareSize <= a.x) {
+      return false;
+    }
+
+    // if they miss vertically
+    if (a.y > b.y + this.squareSize || b.y > a.y + this.squareSize) {
+      return false;
+    }
+
+    return true;
+  }
+
   generateNonOverlappingSquares() {
     const nonOverlappingSquares = [];
 
     while (nonOverlappingSquares.length < this.squares.length) {
       const { width, height } = this.gameBoxElement.getBoundingClientRect();
-      var x = Math.floor(Math.random() * (width - this.squareSize));
-      var y = Math.floor(Math.random() * (height - this.squareSize));
+      const candidateSquare = {
+        x: Math.floor(Math.random() * (width - this.squareSize)),
+        y: Math.floor(Math.random() * (height - this.squareSize)),
+      };
 
       if (
-        nonOverlappingSquares.every((p) => {
-          // If one rectangle is on left side of other
-          if (x + this.squareSize <= p.x || p.x + this.squareSize <= x) {
-            return true;
-          }
-
-          // If one rectangle is above other
-          if (y > p.y + this.squareSize || p.y > y + this.squareSize) {
-            return true;
-          }
-
-          return false;
-        })
+        nonOverlappingSquares.some((p) =>
+          this._doSquaresOverlap(candidateSquare, p)
+        )
       ) {
-        nonOverlappingSquares.push({ x, y });
+        continue;
       }
+
+      nonOverlappingSquares.push(candidateSquare);
     }
 
     return nonOverlappingSquares;
