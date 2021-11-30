@@ -6,24 +6,39 @@ const squares = [
   { cssBackgroundColor: "pink", key: "p" },
 ];
 
-window.addEventListener("DOMContentLoaded", function () {
-  const gameBox = document.getElementById("game-box");
+let gameBoxElement;
+let scoreElement;
 
-  const getSingleSquareSize = () => {
+const gameState = {
+  points: 0,
+};
+
+const addAndDisplayPoints = (newPoints) => {
+  gameState.points += newPoints;
+  scoreElement.innerHTML = `Points: ${gameState.points}`;
+};
+
+window.addEventListener("DOMContentLoaded", function () {
+  gameBoxElement = document.getElementById("game-box");
+  scoreElement = document.getElementById("score");
+
+  addAndDisplayPoints(0);
+
+  const getSquareSize = () => {
     const smaller = Math.min(
-      gameBox.getBoundingClientRect().width,
-      gameBox.getBoundingClientRect().height
+      gameBoxElement.getBoundingClientRect().width,
+      gameBoxElement.getBoundingClientRect().height
     );
 
     return smaller / 5;
   };
 
-  const squareSize = getSingleSquareSize();
+  const squareSize = getSquareSize();
 
   const nonOverlappingPositions = [];
 
   while (nonOverlappingPositions.length < 5) {
-    const { width, height } = gameBox.getBoundingClientRect();
+    const { width, height } = gameBoxElement.getBoundingClientRect();
     var x = Math.floor(Math.random() * (width - squareSize));
     var y = Math.floor(Math.random() * (height - squareSize));
 
@@ -56,7 +71,8 @@ window.addEventListener("DOMContentLoaded", function () {
     box.style.position = "absolute";
     box.style.bottom = `${y}px`;
     box.style.left = `${x}px`;
+    box.style.cursor = "pointer";
 
-    gameBox.appendChild(box);
+    gameBoxElement.appendChild(box);
   });
 });
