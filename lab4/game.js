@@ -28,38 +28,22 @@ window.addEventListener("DOMContentLoaded", function () {
     var y = Math.floor(Math.random() * (height - squareSize));
 
     if (
-      nonOverlappingPositions.some((p) => {
-        const l1 = {
-          x: p.x,
-          y: p.y,
-        };
-        const r1 = {
-          x: p.x + squareSize,
-          y: p.y + squareSize,
-        };
-
-        const l2 = {
-          x: x,
-          y: x,
-        };
-        const r2 = {
-          x: x + squareSize,
-          y: y + squareSize,
-        };
+      nonOverlappingPositions.every((p) => {
         // If one rectangle is on left side of other
-        if (l1.x >= r2.x || l2.x >= r1.x) return false;
+        if (x + squareSize <= p.x || p.x + squareSize <= x) {
+          return true;
+        }
 
         // If one rectangle is above other
-        if (r1.y >= l2.y || r2.y >= l1.y) return false;
+        if (y > p.y + squareSize || p.y > y + squareSize) {
+          return true;
+        }
 
-        return true;
-        // check overlap
+        return false;
       })
     ) {
-      continue;
+      nonOverlappingPositions.push({ x, y });
     }
-
-    nonOverlappingPositions.push({ x, y });
   }
 
   squares.forEach((s, i) => {
