@@ -19,11 +19,16 @@ const addAndDisplayPoints = (newPoints) => {
   scoreElement.innerHTML = `Points: ${gameState.points}`;
 };
 
-const handleSquareClicked = (data) => {
-  console.log(data);
+const handleSquareClicked = (data, target) => {
+  console.log(data, target);
+
+  target.style.display = "none";
+  addAndDisplayPoints(1);
 };
 
 const initializeGame = () => {
+  gameState.points = 0;
+
   const getSquareSize = () => {
     const smaller = Math.min(
       gameBoxElement.getBoundingClientRect().width,
@@ -61,6 +66,8 @@ const initializeGame = () => {
     }
   }
 
+  gameBoxElement.innerHTML = "";
+
   squares.forEach((s, i) => {
     const { x, y } = nonOverlappingPositions[i];
 
@@ -73,7 +80,7 @@ const initializeGame = () => {
     box.style.left = `${x}px`;
     box.style.cursor = "pointer";
 
-    box.addEventListener("click", () => handleSquareClicked({ s }));
+    box.addEventListener("click", (e) => handleSquareClicked({ s }, e.target));
 
     gameBoxElement.appendChild(box);
   });
