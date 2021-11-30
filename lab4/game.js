@@ -32,18 +32,16 @@ class Game {
     return smaller / 5;
   }
 
-  begin() {
-    this.state.active = true;
+  generateNonOverlappingSquares() {
+    const nonOverlappingSquares = [];
 
-    const nonOverlappingPositions = [];
-
-    while (nonOverlappingPositions.length < 5) {
+    while (nonOverlappingSquares.length < this.squares.length) {
       const { width, height } = this.gameBoxElement.getBoundingClientRect();
       var x = Math.floor(Math.random() * (width - this.squareSize));
       var y = Math.floor(Math.random() * (height - this.squareSize));
 
       if (
-        nonOverlappingPositions.every((p) => {
+        nonOverlappingSquares.every((p) => {
           // If one rectangle is on left side of other
           if (x + this.squareSize <= p.x || p.x + this.squareSize <= x) {
             return true;
@@ -57,23 +55,35 @@ class Game {
           return false;
         })
       ) {
-        nonOverlappingPositions.push({ x, y });
+        nonOverlappingSquares.push({ x, y });
       }
     }
 
-    this.gameBoxElement.innerHTML = "";
+    return nonOverlappingSquares;
+  }
+
+  generateSquareCss(squareInfo, coordinates) {
+    return {
+      backgroundColor: squareInfo.cssBackgroundColor,
+      width: `${this.squareSize}px`,
+      height: `${this.squareSize}px`,
+      position: "absolute",
+      bottom: `${coordinates.y}px`,
+      left: `${coordinates.x}px`,
+      cursor: "pointer",
+    };
+  }
+
+  begin() {
+    this.state.active = true;
+
+    const nonOverlappingSquares = this.generateNonOverlappingSquares();
 
     this.squares.forEach((s, i) => {
-      const { x, y } = nonOverlappingPositions[i];
-
       const box = document.createElement("div");
-      box.style.backgroundColor = s.cssBackgroundColor;
-      box.style.width = `${this.squareSize}px`;
-      box.style.height = `${this.squareSize}px`;
-      box.style.position = "absolute";
-      box.style.bottom = `${y}px`;
-      box.style.left = `${x}px`;
-      box.style.cursor = "pointer";
+
+      const coordinates = nonOverlappingSquares[i];
+      Object.assign(box.style, this.generateSquareCss(s, coordinates));
 
       box.addEventListener("click", (e) =>
         this.onSquareClicked({ s }, e.target)
