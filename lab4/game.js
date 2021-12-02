@@ -12,6 +12,7 @@ class Game {
     this.scoreElement = scoreElement;
 
     this.result = 0;
+    this.lastClicked = null;
 
     this.state = {
       active: false,
@@ -20,7 +21,6 @@ class Game {
 
     window.addEventListener("keydown", (e) => {
       this.state.currentClickedKey = e.key;
-      console.log(e.key);
     });
 
     window.addEventListener("keyup", (e) => {
@@ -28,7 +28,15 @@ class Game {
     });
 
     document.getElementById("input_color").addEventListener("input", (e) => {
-      console.log(e);
+      const insertedLetter = e.target.value;
+
+      const s = this.squares.find((s) => s.key === insertedLetter);
+
+      if (this.lastClicked !== null && this.lastClicked.key === s.key) {
+        this.addAndDisplayPoints(1);
+
+        e.target.value = "";
+      }
     });
 
     this.addAndDisplayPoints(0);
@@ -103,7 +111,6 @@ class Game {
     const nonOverlappingSquares = this.generateNonOverlappingSquares();
 
     this.squares.forEach((s, i) => {
-      console.log(s);
       const box = document.createElement("div");
 
       const coordinates = nonOverlappingSquares[i];
@@ -124,6 +131,8 @@ class Game {
   }
 
   onSquareClicked(data, target) {
+    this.lastClicked = data;
+
     if (
       data.cssBackgroundColor === "yellow" &&
       (() => !["Control", "Meta"].includes(this.state.currentClickedKey))()
