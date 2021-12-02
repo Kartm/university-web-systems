@@ -10,7 +10,8 @@ class Game {
   constructor() {
     this.gameBoxElement = gameBoxElement;
     this.scoreElement = scoreElement;
-    this.color_field = color_field;
+
+    this.result = 0;
 
     this.state = {
       active: false,
@@ -24,6 +25,10 @@ class Game {
 
     window.addEventListener("keyup", (e) => {
       this.state.currentClickedKey = "";
+    });
+
+    document.getElementById("input_color").addEventListener("input", (e) => {
+      console.log(e);
     });
 
     this.addAndDisplayPoints(0);
@@ -111,10 +116,10 @@ class Game {
   }
 
   addAndDisplayPoints(newPoints) {
-    result += newPoints;
-    scoreElement.innerHTML = `Points: ${result}`;
-    if (result === 10) {
-      scoreElement.innerHTML = `Points: ${result} (max!)`;
+    this.result += newPoints;
+    scoreElement.innerHTML = `Points: ${this.result}`;
+    if (this.result === 10) {
+      scoreElement.innerHTML = `Points: ${this.result} (max!)`;
     }
   }
 
@@ -131,18 +136,12 @@ class Game {
   }
 }
 
-colors = ["pink", "yellow", "orange", "violet", "red", "green", "blue"];
-var result = 0;
-
 window.addEventListener("DOMContentLoaded", function () {
   gameBoxElement = document.getElementById("game-box");
   scoreElement = document.getElementById("score");
-  color_field = Math.floor(Math.random() * colors.length);
 
-  const game = new Game(gameBoxElement, scoreElement, color_field);
-  let this_color = colors[color_field];
-  inputVal = document.getElementById("input_color");
-  inputVal.style.backgroundColor = this_color;
+  const game = new Game(gameBoxElement, scoreElement);
+
   gameBoxElement.addEventListener("mouseover", () => {
     if (!game.isActive && confirm("Wanna play?")) {
       game.begin();
