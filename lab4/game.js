@@ -10,22 +10,21 @@ class Game {
   constructor() {
     this.gameBoxElement = gameBoxElement;
     this.scoreElement = scoreElement;
-	this.color_field = color_field;
-	window.addEventListener("keyup", function (e) {
-	if (check_input && e.key != "Control") {
-		let inputVal = document.getElementById("input_color").value;
-		let temp = colors[color_field];
-		if (inputVal != "" && inputVal === temp.charAt(0)) {
-			scoreElement.innerHTML = `Points: ${++result}`;
-		}
-		document.getElementById("input_color").value = "";
-		check_input=false;
-	}
-  });
+    this.color_field = color_field;
 
     this.state = {
       active: false,
+      currentClickedKey: "",
     };
+
+    window.addEventListener("keydown", (e) => {
+      this.state.currentClickedKey = e.key;
+      console.log(e.key);
+    });
+
+    window.addEventListener("keyup", (e) => {
+      this.state.currentClickedKey = "";
+    });
 
     this.addAndDisplayPoints(0);
   }
@@ -92,65 +91,46 @@ class Game {
       cursor: "pointer",
     };
   }
-  
+
   begin() {
     this.state.active = true;
 
     const nonOverlappingSquares = this.generateNonOverlappingSquares();
 
     this.squares.forEach((s, i) => {
-		console.log(s);
+      console.log(s);
       const box = document.createElement("div");
 
       const coordinates = nonOverlappingSquares[i];
       Object.assign(box.style, this.generateSquareCss(s, coordinates));
-		if (s["cssBackgroundColor"] != "yellow") {
-      box.addEventListener("click", (e) =>
-        this.onSquareClicked({ s }, e.target)
-      );}
-	  else {
-		box.addEventListener("click", (e) =>
-        this.onYellowClicked({ s }, e.target, e.ctrlKey)
-      );}
-      this.gameBoxElement.appendChild(box);
-	});
-  }
 
+      box.addEventListener("click", (e) => this.onSquareClicked(s, e.target));
+
+      this.gameBoxElement.appendChild(box);
+    });
+  }
 
   addAndDisplayPoints(newPoints) {
     result += newPoints;
     scoreElement.innerHTML = `Points: ${result}`;
-	if (result === 5) {
-		check_input=true;
-		document.getElementById("input_color").value = "";
-		setTimeout(function(){
-		check_input = false;
-		var res = "You've got ";
-		res += result;
-		res += " points!";
-		alert(res);}, 5000);
-	}
+    if (result === 10) {
+      scoreElement.innerHTML = `Points: ${result} (max!)`;
+    }
   }
-  
 
-  onYellowClicked(data, target, key) {
-	 console.log(data, target);
-	if(key) {
-		target.style.display = "none";
-		this.addAndDisplayPoints(1);
-	}
-  }
-	
   onSquareClicked(data, target) {
-    console.log(data, target);
+    if (
+      data.cssBackgroundColor === "yellow" &&
+      (() => !["Control", "Meta"].includes(this.state.currentClickedKey))()
+    ) {
+      return;
+    }
 
     target.style.display = "none";
     this.addAndDisplayPoints(1);
   }
-  
 }
 
-var check_input = false;
 colors = ["pink", "yellow", "orange", "violet", "red", "green", "blue"];
 var result = 0;
 
@@ -158,9 +138,9 @@ window.addEventListener("DOMContentLoaded", function () {
   gameBoxElement = document.getElementById("game-box");
   scoreElement = document.getElementById("score");
   color_field = Math.floor(Math.random() * colors.length);
-	
+
   const game = new Game(gameBoxElement, scoreElement, color_field);
-    let this_color = colors[color_field];
+  let this_color = colors[color_field];
   inputVal = document.getElementById("input_color");
   inputVal.style.backgroundColor = this_color;
   gameBoxElement.addEventListener("mouseover", () => {
@@ -169,4 +149,3 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
