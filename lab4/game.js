@@ -140,7 +140,8 @@ class Game {
       return;
     }
 
-    target.style.display = "none";
+    // target.style.display = "none";
+    target.style.backgroundColor = "black";
     this.addAndDisplayPoints(1);
   }
 }
@@ -154,6 +155,23 @@ window.addEventListener("DOMContentLoaded", function () {
   gameBoxElement.addEventListener("mouseover", () => {
     if (!game.isActive && confirm("Wanna play?")) {
       game.begin();
+    }
+  });
+
+  const colorSelect = document.getElementById("bg-color-select");
+
+  game.squares.forEach((s) => {
+    const selectOption = document.createElement("option");
+    selectOption.appendChild(document.createTextNode(s.cssBackgroundColor));
+
+    colorSelect.appendChild(selectOption);
+  });
+
+  colorSelect.addEventListener("change", function (e) {
+    const s = game.squares.find((s) => s.cssBackgroundColor === this.value);
+
+    if (s) {
+      document.body.style.backgroundColor = s.cssBackgroundColor;
     }
   });
 });
