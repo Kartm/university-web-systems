@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-
+<?php
+      session_start();
+?>
 <html>
    <head>
       <meta charset = "utf-8">
       <title>PHP remembering appearance</title>
 
       <?php
+		if(isset($_SESSION['username'])) {
+			$user = $_SESSION['username'];
+			print("<p>Welcome, $user!</p>");
+		}
          if (isset($_COOKIE['selection'])){
             if($_COOKIE['selection'] == "DARK") {
                echo "
