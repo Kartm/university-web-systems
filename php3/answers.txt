@@ -1,0 +1,14 @@
+1. Describe the functions that perform access and operations on the basis and table of data. What
+determines the format received data?
+$result -> fetch_all() returns the whole result set as an associative array.
+$result -> fetch_array() returns a result row as a numeric array and as an associative array
+$result -> fetch_field() returns the next column in the result set as an object
+$result -> fetch_row() returns one row from a result set as an enumerated array
+
+2. How is error handling implemented for database operations functions?
+$mysqli->query returns a boolean. If it's false, $mysqli->error will contain a string description of last error occurred in the database.
+
+3. How to handle special PHP characters (such as, for example, parentheses in a telephone number)
+when formulating SQL queries?
+
+4. Discuss the mechanism of creating a form with already entered data.
