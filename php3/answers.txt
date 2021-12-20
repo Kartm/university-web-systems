@@ -10,5 +10,6 @@ $mysqli->query returns a boolean. If it's false, $mysqli->error will contain a s
 
 3. How to handle special PHP characters (such as, for example, parentheses in a telephone number)
 when formulating SQL queries?
+We can use mysqli_real_escape_string() function to use those characters
 
 4. Discuss the mechanism of creating a form with already entered data.
