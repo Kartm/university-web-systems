@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <?php
-      session_start();
+    session_start();
+	
 ?>
 <html>
    <head>
@@ -11,12 +12,6 @@
 
    <body>
 		<h1>Hello, please login:</h1>
-		<?php 
-			if(isset($_SESSION['userid'])) {
-				$usid = $_SESSION['userid'];
-				print("<p> Currently logged as $usid </p>");
-			}
-		?>
 	   <form method="post" action="after_login.php">
 	   	<p>
 			<input name="register" type="checkbox">I want to register
@@ -36,15 +31,6 @@
 	   <?php
         if(array_key_exists('Reset', $_POST)) {
             myreset();
-        }
-        function myreset() {
-			if (isset($_SESSION['userid'])) {
-				session_unset($_SESSION['userid']);
-				$bool = isset($_SESSION['userid']);
-				echo("Successfully reseted: $bool");
-			} else {
-				echo("Nothing to reset");
-			}
         }
     ?>
    </body>

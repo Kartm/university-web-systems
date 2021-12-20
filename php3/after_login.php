@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
-      session_start();
+    session_start();
+	
 ?>
 <html>
    <head>
@@ -16,9 +17,6 @@
 			class="button" value="back" />
 			</form>');
 		}
-		if(isset($_SESSION['username'])) {
-			session_unset($_SESSION['username']);
-		}
         if (isset($_POST['username']) && isset($_POST['password'])){
 			if (!($database = mysql_connect("localhost", "root", "") ) )
 				die("Could not connect to database </body</html>");
@@ -26,25 +24,31 @@
 				die("Could not connect to mysql database </body</html>");
 			$user = $_POST['username'];
 			$pass = $_POST['password'];
+			$pattern = '/'."^\w{1,20}$".'/';
 			if(isset($_POST['register'])){
-				$register = $_POST['register'];
-				$check = "SELECT 1 FROM user_php WHERE username = '". $user."';";
-				if(!($result = mysql_query($check, $database) ) ) {
-					print("<p> Could not execute query</p>");
-					die(mysql_error(). "</body></html>");
-				}
-				$res = mysql_fetch_row($result);
-				if($res == null) {
-					$insert = "INSERT INTO user_php (username, password) VALUES ('".$user."', '".$pass."');"; 
-					if(!($res_insert = mysql_query($insert, $database) ) ) {
+				if (preg_match($pattern, $user) == 1 && preg_match($pattern, $pass) == 1) {
+					$register = $_POST['register'];
+					$check = "SELECT 1 FROM user_php WHERE username = '". $user."';";
+					if(!($result = mysql_query($check, $database) ) ) {
 						print("<p> Could not execute query</p>");
 						die(mysql_error(). "</body></html>");
+					}
+					$res = mysql_fetch_row($result);
+					if($res == null) {
+						$insert = "INSERT INTO user_php (username, password) VALUES ('".$user."', '".$pass."');"; 
+						if(!($res_insert = mysql_query($insert, $database) ) ) {
+							print("<p> Could not execute query</p>");
+							die(mysql_error(). "</body></html>");
+						} else {
+							echo("Successfully registered");
+							myback();
+						}
 					} else {
-						echo("Successfully registered");
+						echo("User like that already exists");
 						myback();
 					}
 				} else {
-					echo("User like that already exists");
+					echo("Username and password must contain only letters and digits and be shorter than 20");
 					myback();
 				}
 			} else {
@@ -58,8 +62,8 @@
 					echo("Wrong login");
 					myback();
 				} else {
-					$_SESSION['userid'] = $res_val[0];
-					echo("Successfull login, userid: ".$_SESSION['userid']);
+					setcookie('session_id', $user, time() + 1 * 60 * 60);
+					echo("Successfull login");
 					echo('<form method="post">
 					<input type="submit" name="proceed"
 					class="button" value="proceed" />
@@ -76,12 +80,5 @@
 			exit();
 		}
       ?>
-	<?php
-	   if (isset($_SESSION['username'])) {
-		  $userdata = $_SESSION['username'];
-		  header("Location: appearances.php");
-		  exit();
-	    }
-	?>
    </body>
 </html>
