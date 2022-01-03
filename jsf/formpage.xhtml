@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Info Page</title>
+    </h:head>
+    <h:body>
+        <h:commandButton id="Form" value="Go to Info Page" 
+            action = "infopage" value = "infoPage">
+        <h:outputFormat value='Please submit the information'/>
+        <h:form id='theform'>
+            <h:outputLabel for='word'>One word characterising You</h:outputLabel>
+            <h:inputText id='word' value='Word' required="true" 
+                         requiredMessage='Please tell us about yourself'>
+            <f:validateLength minimum = "5"/>
+            </h:inputText>
+            </br>
+            <h:outputLabel for='word'>Favourite animal?</h:outputLabel>
+            <h:selectOneRadio value = "Animal" required='true'> 
+                <f:selectItem itemValue = "1" itemLabel = "Cat" /> 
+                <f:selectItem itemValue = "2" itemLabel = "Dog" />
+            </h:selectOneRadio> 
+            </br>
+            <h:selectBooleanCheckbox value = "Do You like fries?" id = "fries" /> 
+            <h:commandButton id="submit" value="Submit" action="response.xhtml"/>  
+        </h:form>
+    </h:body>
+</html>
+
