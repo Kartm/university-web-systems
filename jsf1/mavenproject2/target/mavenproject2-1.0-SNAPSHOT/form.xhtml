@@ -10,34 +10,50 @@
    </h:head>
    <h:body>
       <h:form>
-         <h1>Please fill out the following form:</h1>
-         <p>All fields are required and must contain valid information</p>
+         <h1>Please fill the form:</h1>
          <h:panelGrid columns="3">
             <h:outputText value="Name:"/>
             <h:inputText id="nameInputText" required="true"
-               requiredMessage="Please enter your name"
+               requiredMessage="Missing name"
                value="#{validationBean.name}"
-               validatorMessage="Name must be fewer than 30 characters">
+               validatorMessage="Must be less than 30 characters">
                <f:validateLength maximum="30" />
             </h:inputText>
             <h:message for="nameInputText" styleClass="error"/>
             <h:outputText value="E-mail:"/>
             <h:inputText id="emailInputText" required="true"
-               requiredMessage="Please enter a valid e-mail address"
+               requiredMessage="Missing e-mail address"
                value="#{validationBean.email}"
-               validatorMessage="Invalid e-mail address format">
+               validatorMessage="Invalid format">
                <f:validateRegex pattern=
                   "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
             </h:inputText>
             <h:message for="emailInputText" styleClass="error"/>
             <h:outputText value="Phone:"/>
             <h:inputText id="phoneInputText" required="true"
-               requiredMessage="Please enter a valid phone number"
+               requiredMessage="Missing phone number"
                value="#{validationBean.phone}"
-               validatorMessage="Invalid phone number format">
+               validatorMessage="Invalid format">
                <f:validateRegex pattern="^[0-9]*$" />
             </h:inputText>
             <h:message for="phoneInputText" styleClass="error"/>
+            
+            <h:outputText value="Your age:"/>
+            <h:inputText value="#{validationBean.age}"
+                         required="true"
+                         converterMessage="Please enter numbers only."
+                         validatorMessage="Your age should be between 5 and 200.">
+                <f:validateLongRange minimum = "5" maximum = "200" />
+            </h:inputText>
+            
+            <br/>
+
+            <h:outputLabel for="isStudentSelect">Are you a student?</h:outputLabel>
+            <h:selectOneRadio id="isStudentSelect"
+                              value="#{validationBean.isStudent}"> 
+                <f:selectItem itemValue="#{false}" itemLabel="No" /> 
+                <f:selectItem itemValue="#{true}" itemLabel="Yes" /> 
+             </h:selectOneRadio> 
          </h:panelGrid>
          <h:commandButton value="Submit"/>
          <h:outputText escape="false" value="#{validationBean.result}"/>
