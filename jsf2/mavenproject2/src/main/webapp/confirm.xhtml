@@ -10,16 +10,28 @@
       <h:outputStylesheet name="styles.css" library="css"/>
    </h:head>
    <h:body>
+       <h1>Confirm your order</h1>
       <h:form>
-         <h1>Confirm your order</h1>
-         
-         
-         
+          <br/>
+          <br/>
+         <h3>How much of a tip do You want to give the driver?</h3>
+         <h:selectOneRadio id="radio" 
+                          value ="#{cartBean.tip}">
+            <f:selectItem itemValue ="1" itemLabel ="0zł" />
+            <f:selectItem itemValue ="2" itemLabel ="5zł" />
+            <f:selectItem itemValue ="3" itemLabel ="10zł" />
+            <f:ajax execute="radio"
+                    render="total" />
+        </h:selectOneRadio>
          <br/>
-         
+         <br/>
+         <h:outputText escape="false" 
+                       id="total"
+                       value="Total:  #{cartBean.tip} zł"/>
+         <br/>
          <h:link value="Get back" outcome="cart" />
          <br/>
-         <h:link value="Buy" outcome="confirm" />
+         <h:link value="Proceed" outcome="success" />
       </h:form>
    </h:body>
 </html>

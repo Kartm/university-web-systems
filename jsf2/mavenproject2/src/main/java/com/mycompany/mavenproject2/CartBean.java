@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class CartBean implements Serializable
 {
     Set<Product> cartItems = new LinkedHashSet<Product>();
+    String tip = "";
 
     public boolean isInCart(Product product) {
         return this.cartItems.contains(product);
@@ -31,6 +32,21 @@ public class CartBean implements Serializable
         }
 
         return String.valueOf(sum);
+   }
+   
+   public void setTip(String tip) {
+       this.tip = tip;
+   }
+   
+   public String getTip() {
+       int sum = Integer.parseInt(getTotal());
+       switch(tip) {
+           case "1": break;
+           case "2": sum+=5; break;
+           case "3": sum+=10; break;
+           default: break;
+       }
+       return String.valueOf(sum);
    }
 
     public void addToCart(Product product) {

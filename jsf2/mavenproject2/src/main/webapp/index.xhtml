@@ -12,7 +12,15 @@
    <h:body>
       <h:form>
         <h1>Products</h1>
-        <h:panelGrid columns="3">    
+        <h:selectOneRadio id="radio" 
+                          value ="#{products.categories}">
+            <f:selectItem itemValue ="1" itemLabel ="Diary" />
+            <f:selectItem itemValue ="2" itemLabel ="Breadstuff" />
+            <f:selectItem itemValue ="3" itemLabel ="Others" />
+            <f:ajax execute="radio"
+                    render="list" />
+        </h:selectOneRadio>
+        <h:panelGrid columns="3" id="list">    
             <h:dataTable var="item" value="#{products.items}">
                 <h:column>
                         <f:facet name="header">
