@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+   <h:head>
+      <title>Cart</title>
+      <h:outputStylesheet name="styles.css" library="css"/>
+   </h:head>
+   <h:body>
+      <h:form>
+         <h1>Your cart</h1>
+         
+         <h:panelGrid columns="3">    
+            <h:dataTable var="item" value="#{cartBean.cartItems}">
+                <h:column>
+                        <f:facet name="header">
+                                <h:outputText value="Name" />
+                        </f:facet>
+                        <h:outputText value="#{item.name}" />
+                </h:column>
+                <h:column>
+                        <f:facet name="header">
+                                <h:outputText value="Price" />
+                        </f:facet>
+                        <h:outputText value="#{item.value} zł" />
+                </h:column>
+            </h:dataTable>
+        </h:panelGrid>
+         
+         <h:outputText escape="false" value="Total: #{cartBean.total} zł"/>
+         
+         <br/>
+         
+         <h:link value="Get back" outcome="index" />
+         
+         <br/>
+         <h:link value="Confirm order" outcome="confirm" />
+
+      </h:form>
+   </h:body>
+</html>
