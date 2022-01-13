@@ -30,11 +30,11 @@
                 </h:column>
             </h:dataTable>
         </h:panelGrid>
-         
-         <h:outputText escape="false" value="Total:  #{cartBean.total} zł"/>
-         
-         <br/>
-         
+        <h:outputText escape="false" value="Total:  #{cartBean.total} zł"/>
+            <br/>
+         <h:outputText escape="false" value="Number of products:  #{cartBean.size}"/>
+            <br/> 
+            <br/>
          <h:link value="Get back" outcome="index" />
          
          <br/>

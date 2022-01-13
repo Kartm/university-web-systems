@@ -16,19 +16,31 @@
           <br/>
          <h3>How much of a tip do You want to give the driver?</h3>
          <h:selectOneRadio id="radio" 
-                          value ="#{cartBean.tip}">
+                          value ="#{cartBean.tip}"
+                          required="true">
             <f:selectItem itemValue ="1" itemLabel ="0zł" />
             <f:selectItem itemValue ="2" itemLabel ="5zł" />
             <f:selectItem itemValue ="3" itemLabel ="10zł" />
             <f:ajax execute="radio"
-                    render="total" />
+                    render="total"/>
+            <f:ajax execute="radio"
+                    render="tip"/>
         </h:selectOneRadio>
          <br/>
          <br/>
+         <h:outputText escape="false" value="Order:  #{cartBean.total} zł"/>
+            <br/>
          <h:outputText escape="false" 
-                       id="total"
-                       value="Total:  #{cartBean.tip} zł"/>
-         <br/>
+                       value="Delivery:  #{cartBean.tip} zł"
+                       id="tip"/>
+            <br/>
+         <h:outputText escape="false" value="----------------------------"/>
+            <br/>
+         <h:outputText escape="false" 
+                       value="Total:  #{cartBean.totalTip} zł"
+                       id="total"/>
+            <br/> 
+            <br/> 
          <h:link value="Get back" outcome="cart" />
          <br/>
          <h:link value="Proceed" outcome="success" />
